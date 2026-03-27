@@ -55,7 +55,7 @@
         #overlay.hidden { opacity: 0; pointer-events: none; }
 
         .enter-btn {
-            display: flex; align-items: center; gap: 10px;
+            display: flex; align-items: center;
             border: 1px solid rgba(255,255,255,0.15);
             padding: 13px 36px;
             border-radius: 6px;
@@ -71,16 +71,6 @@
             border-color: rgba(255,255,255,0.4);
             color: white;
             background: rgba(255,255,255,0.05);
-        }
-        .enter-dot {
-            width: 5px; height: 5px;
-            border-radius: 50%; background: white;
-            opacity: 0.3;
-            animation: blink 1.8s ease-in-out infinite;
-        }
-        @keyframes blink {
-            0%,100%{opacity:0.15;transform:scale(1)}
-            50%{opacity:0.7;transform:scale(1.4)}
         }
 
         #main {
@@ -176,8 +166,14 @@
             border-radius: 7px;
             background: rgba(255,255,255,0.07);
             display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0; font-size: 0.9rem;
+            flex-shrink: 0;
             border: 1px solid var(--glass-border);
+            overflow: hidden;
+        }
+        .thumb img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            border-radius: 7px;
         }
 
         .minfo { flex: 1; min-width: 0; }
@@ -253,7 +249,7 @@
 <body>
 
 <div id="overlay" onclick="startApp()">
-    <div class="enter-btn"><div class="enter-dot"></div>Enter</div>
+    <div class="enter-btn">Enter</div>
 </div>
 
 <video id="bg-video" loop muted playsinline preload="auto">
@@ -275,12 +271,12 @@
         <div class="meta-row" id="meta-row">
             <span class="meta-item">
                 <svg viewBox="0 0 24 24"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                744
+                <span id="view-count">...</span>
             </span>
             <div class="vdiv"></div>
             <span class="meta-item">
                 <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-                Sweden
+                Mirage
             </span>
         </div>
 
@@ -288,27 +284,29 @@
         <div class="tagline" id="tagline">Developer from Sweden</div>
 
         <div class="socials" id="socials">
-            <a href="#" class="soc" title="GitHub">
+            <a href="https://github.com/Rogstah" target="_blank" class="soc" title="GitHub">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/></svg>
             </a>
-            <a href="#" class="soc" title="Discord">
+            <a href="https://discord.com/users/1393664646594039849" target="_blank" class="soc" title="Discord">
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.317 4.37a19.791 19.791 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.864-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.32 13.58.099 18.057.1 18.079.11 18.1.132 18.114a19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.107 13.107 0 0 1-1.872-.892.077.077 0 0 1-.008-.128 10.2 10.2 0 0 0 .372-.292.074.074 0 0 1 .077-.01c3.928 1.793 8.18 1.793 12.062 0a.074.074 0 0 1 .078.01c.12.098.246.198.373.292a.077.077 0 0 1-.006.127 12.299 12.299 0 0 1-1.873.892.077.077 0 0 0-.041.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.028 19.839 19.839 0 0 0 6.002-3.03.077.077 0 0 0 .032-.054c.5-5.177-.838-9.674-3.549-13.66a.061.061 0 0 0-.031-.03zM8.02 15.33c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.956-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.085-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.096 2.157 2.42 0 1.333-.946 2.418-2.157 2.418z"/></svg>
             </a>
-            <a href="#" class="soc" title="TikTok">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.77a4.85 4.85 0 0 1-1.01-.08z"/></svg>
+            <a href="https://www.youtube.com/@Rogstah" target="_blank" class="soc" title="YouTube">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
             </a>
         </div>
 
         <div class="hr" id="hr"></div>
 
         <div class="music-bar" id="music-bar">
-            <div class="thumb">♪</div>
+            <div class="thumb">
+                <img src="cover.png" alt="cover" onerror="this.parentElement.innerHTML='♪'">
+            </div>
             <div class="minfo">
-                <div class="mtitle">idk</div>
+                <div class="mtitle">Dark Thoughts</div>
                 <div class="mprog">
                     <span class="mtime" id="tcur">0:00</span>
                     <div class="track"><div class="fill" id="fill"></div></div>
-                    <span class="mtime" id="ttot">1:39</span>
+                    <span class="mtime" id="ttot">0:00</span>
                 </div>
             </div>
             <div class="mctrl">
@@ -331,6 +329,21 @@
     var started = false;
     var music = document.getElementById('bg-music');
     var muted = false;
+
+    function fetchViews() {
+        fetch('https://api.counterapi.dev/v1/rogstah/profile/up')
+            .then(function(r){ return r.json(); })
+            .then(function(d){
+                var el = document.getElementById('view-count');
+                if (el && d && d.count !== undefined) {
+                    el.textContent = d.count.toLocaleString();
+                }
+            })
+            .catch(function(){
+                var el = document.getElementById('view-count');
+                if (el) el.textContent = '—';
+            });
+    }
 
     function startApp() {
         if (started) return;
@@ -427,6 +440,8 @@
 
         window.addEventListener('resize', function(){ c.width=window.innerWidth; c.height=window.innerHeight; });
     }
+
+    fetchViews();
 </script>
 
 </body>
