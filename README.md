@@ -1,11 +1,11 @@
 # 👋 Hi, I'm Rogstah
 
-Developer from Sweden.
-Working with JavaScript, Java, Python, C#, C++
+Developer from Sweden.<br>
+Working with JavaScript, Java, Python, C#, C++<br>
 Interested in OGFN Projects and Backend Servers.
 
 <p align="left">
-    <img src="https://komarev.com/ghpvc/?username=Rogstah&label=Profile%20views&color=00a6ff&style=flat" alt="itztiva" />
+    <img src="https://komarev.com/ghpvc/?username=Rogstah&label=Profile%20Views&color=00a6ff&style=flat" alt="itztiva" />
 </p>
 
 <p align="center">
