@@ -1,16 +1,13 @@
-## Hi there 👋
+# 👋 Hi, I'm Rogstah
 
-<!--
-**Rogstah/Rogstah** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
+Developer from Sweden.
+Working with JavaScript, Java, Python, C#, C++
+Interested in OGFN Projects and Backend Servers.
 
-Here are some ideas to get you started:
+<p align="left">
+    <img src="https://komarev.com/ghpvc/?username=Rogstah&label=Profile%20views&color=00a6ff&style=flat" alt="itztiva" />
+</p>
 
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
+<p align="center">
+  <img src="./banner.png" width="858">
+</p>
