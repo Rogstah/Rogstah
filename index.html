@@ -14,7 +14,6 @@
             background-color: #000;
             font-family: 'Segoe UI', sans-serif;
         }
-
         #bg-video {
             position: fixed;
             top: 50%;
@@ -28,7 +27,6 @@
             object-fit: cover;
             display: block;
         }
-
         #overlay {
             position: fixed;
             top: 0;
@@ -43,7 +41,6 @@
             cursor: pointer;
             transition: opacity 0.5s;
         }
-
         .container {
             position: relative;
             z-index: 1;
@@ -55,7 +52,6 @@
             color: white;
             text-align: center;
         }
-
         .content-box {
             background: rgba(0, 0, 0, 0.4);
             padding: 3rem;
@@ -63,7 +59,6 @@
             backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
         h1 {
             font-size: 3.5rem;
             margin: 0;
@@ -71,7 +66,6 @@
             color: white;
             text-shadow: 0 0 20px rgba(255,255,255,0.5);
         }
-
         p {
             font-size: 1.2rem;
             opacity: 0.8;
@@ -80,42 +74,40 @@
     </style>
 </head>
 <body>
-
     <div id="overlay" onclick="startApp()">
         <h1 style="font-size: 1.5rem;">[ CLICK TO ENTER ]</h1>
     </div>
-
-    <video id="bg-video" loop muted playsinline autoplay>
+    <video id="bg-video" loop muted playsinline>
         <source src="https://r2.guns.lol/e0098194-124f-4040-a7f9-b561658377dd.mp4" type="video/mp4">
     </video>
-
     <audio id="bg-music" loop>
         <source src="https://files.catbox.moe/jmsvsz.mp3" type="audio/mpeg">
     </audio>
-
     <div class="container">
         <div class="content-box">
             <h1>ROGSTAH</h1>
             <p>Developer from Sweden</p>
         </div>
     </div>
-
     <script>
         function startApp() {
             const video = document.getElementById('bg-video');
             const music = document.getElementById('bg-music');
             const overlay = document.getElementById('overlay');
 
-            video.muted = false;
-            video.play();
-            music.play();
-            
+            video.muted = true;
+            video.play().then(() => {
+                video.muted = false;
+            }).catch(() => {
+                video.muted = true;
+                video.play();
+            });
+
+            music.play().catch(() => {});
+
             overlay.style.opacity = '0';
-            setTimeout(() => {
-                overlay.style.display = 'none';
-            }, 500);
+            setTimeout(() => overlay.style.display = 'none', 500);
         }
     </script>
-
 </body>
 </html>
