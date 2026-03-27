@@ -5,15 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rogstah Profile</title>
     <style>
-        body, html {
+        *, *::before, *::after {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
+        }
+
+        body, html {
             width: 100%;
             height: 100%;
             overflow: hidden;
             background-color: #000;
             font-family: 'Segoe UI', sans-serif;
         }
+
         #bg-video {
             position: fixed;
             top: 50%;
@@ -22,92 +27,158 @@
             min-height: 100%;
             width: 100vw;
             height: 100vh;
-            z-index: -100;
+            z-index: 0;
             transform: translate(-50%, -50%);
             object-fit: cover;
             display: block;
+            opacity: 0;
+            transition: opacity 1s ease;
         }
+
+        #bg-video.visible {
+            opacity: 1;
+        }
+
         #overlay {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
-            cursor: pointer;
-            transition: opacity 0.5s;
-        }
-        .container {
-            position: relative;
-            z-index: 1;
-            height: 100vh;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.92);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            z-index: 200;
+            cursor: pointer;
+            transition: opacity 0.6s ease;
+        }
+
+        #overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        #overlay span {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 28px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        #overlay:hover span {
             color: white;
-            text-align: center;
+            border-color: rgba(255, 255, 255, 0.6);
         }
+
+        .container {
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
         .content-box {
-            background: rgba(0, 0, 0, 0.4);
-            padding: 3rem;
+            background: rgba(0, 0, 0, 0.45);
+            padding: 3rem 4rem;
             border-radius: 20px;
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: white;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.8s ease 0.3s, transform 0.8s ease 0.3s;
         }
+
+        .content-box.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         h1 {
             font-size: 3.5rem;
-            margin: 0;
-            letter-spacing: 8px;
-            color: white;
-            text-shadow: 0 0 20px rgba(255,255,255,0.5);
+            letter-spacing: 10px;
+            font-weight: 700;
+            text-shadow: 0 0 30px rgba(255, 255, 255, 0.4);
         }
+
         p {
-            font-size: 1.2rem;
-            opacity: 0.8;
-            margin-top: 15px;
+            font-size: 1rem;
+            opacity: 0.65;
+            margin-top: 12px;
+            letter-spacing: 2px;
         }
     </style>
 </head>
 <body>
+
     <div id="overlay" onclick="startApp()">
-        <h1 style="font-size: 1.5rem;">[ CLICK TO ENTER ]</h1>
+        <span>Click to Enter</span>
     </div>
-    <video id="bg-video" loop muted playsinline>
+
+    <video id="bg-video" loop muted playsinline preload="auto">
         <source src="video.mp4" type="video/mp4">
     </video>
-    <audio id="bg-music" loop>
+
+    <audio id="bg-music" loop preload="none">
         <source src="https://files.catbox.moe/jmsvsz.mp3" type="audio/mpeg">
     </audio>
+
     <div class="container">
-        <div class="content-box">
+        <div class="content-box" id="content-box">
             <h1>ROGSTAH</h1>
             <p>Developer from Sweden</p>
         </div>
     </div>
+
     <script>
+        var entered = false;
+
         function startApp() {
-            const video = document.getElementById('bg-video');
-            const music = document.getElementById('bg-music');
-            const overlay = document.getElementById('overlay');
+            if (entered) return;
+            entered = true;
+
+            var video = document.getElementById('bg-video');
+            var music = document.getElementById('bg-music');
+            var overlay = document.getElementById('overlay');
+            var contentBox = document.getElementById('content-box');
 
             video.muted = true;
-            video.play().then(() => {
-                video.muted = false;
-            }).catch(() => {
-                video.muted = true;
-                video.play();
-            });
+            video.load();
 
-            music.play().catch(() => {});
+            var playPromise = video.play();
 
-            overlay.style.opacity = '0';
-            setTimeout(() => overlay.style.display = 'none', 500);
+            if (playPromise !== undefined) {
+                playPromise.then(function () {
+                    video.classList.add('visible');
+                }).catch(function () {
+                    video.classList.add('visible');
+                });
+            } else {
+                video.classList.add('visible');
+            }
+
+            music.volume = 0.4;
+            music.play().catch(function () {});
+
+            overlay.classList.add('hidden');
+
+            setTimeout(function () {
+                overlay.style.display = 'none';
+            }, 700);
+
+            setTimeout(function () {
+                contentBox.classList.add('visible');
+            }, 400);
         }
     </script>
+
 </body>
 </html>
