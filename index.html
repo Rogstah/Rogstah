@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rogstah Profile</title>
+    
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            width: 100%;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #000;
+        }
+
+        #bg-video {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            z-index: -1;
+            object-fit: cover;
+        }
+
+        .container {
+            background: rgba(0, 0, 0, 0.6);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            color: white;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        p {
+            opacity: 0.7;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        audio {
+            margin-top: 30px;
+            filter: invert(100%) hue-rotate(180deg) brightness(1.5);
+            opacity: 0.6;
+            transition: opacity 0.3s;
+        }
+
+        audio:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <video autoplay muted loop playsinline id="bg-video">
+        <source src="https://r2.guns.lol/e0098194-124f-4040-a7f9-b561658377dd.mp4" type="video/mp4">
+    </video>
+
+    <div class="container">
+    
+        <h1>ROGSTAHT</h1>
+        <p>Developer from Sweden</p>
+        
+        <audio autoplay loop controls>
+            <source src="https://files.catbox.moe/jmsvsz.mp3" type="audio/mpeg">
+        </audio>
+        
+    </div>
+
+</body>
+
+</html>
