@@ -21,11 +21,12 @@
             left: 50%;
             min-width: 100%;
             min-height: 100%;
-            width: auto;
-            height: auto;
+            width: 100vw;
+            height: 100vh;
             z-index: -100;
             transform: translate(-50%, -50%);
             object-fit: cover;
+            display: block;
         }
 
         #overlay {
@@ -34,14 +35,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             display: flex;
             align-items: center;
             justify-content: center;
             z-index: 100;
             cursor: pointer;
-            color: white;
-            text-align: center;
+            transition: opacity 0.5s;
         }
 
         .container {
@@ -57,33 +57,35 @@
         }
 
         .content-box {
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.4);
             padding: 3rem;
             border-radius: 20px;
-            backdrop-filter: blur(10px);
+            backdrop-filter: blur(8px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         h1 {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin: 0;
-            letter-spacing: 5px;
-            text-transform: uppercase;
+            letter-spacing: 8px;
+            color: white;
+            text-shadow: 0 0 20px rgba(255,255,255,0.5);
         }
 
         p {
             font-size: 1.2rem;
             opacity: 0.8;
+            margin-top: 15px;
         }
     </style>
 </head>
 <body>
 
     <div id="overlay" onclick="startApp()">
-        <h1>CLICK TO ENTER</h1>
+        <h1 style="font-size: 1.5rem;">[ CLICK TO ENTER ]</h1>
     </div>
 
-    <video loop playsinline id="bg-video">
+    <video id="bg-video" loop muted playsinline autoplay>
         <source src="https://r2.guns.lol/e0098194-124f-4040-a7f9-b561658377dd.mp4" type="video/mp4">
     </video>
 
@@ -93,7 +95,7 @@
 
     <div class="container">
         <div class="content-box">
-            <h1>ROGSTAHT</h1>
+            <h1>ROGSTAH</h1>
             <p>Developer from Sweden</p>
         </div>
     </div>
@@ -104,6 +106,7 @@
             const music = document.getElementById('bg-music');
             const overlay = document.getElementById('overlay');
 
+            video.muted = false;
             video.play();
             music.play();
             
