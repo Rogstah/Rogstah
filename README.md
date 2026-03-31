@@ -1,6 +1,6 @@
 # 👋 Hi, I'm Rogstah
 
-Developer from Sweden.<br>
+13 Y/O Developer from Sweden.<br>
 Working with JavaScript, Java, Python, C#, C++<br>
 Interested in OGFN Projects and Backend Servers.
 
